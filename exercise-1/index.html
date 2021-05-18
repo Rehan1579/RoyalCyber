@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Exercise 1</title>
+
+	<link rel="stylesheet" type="text/css" href="index.css"/>
+
+	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+	<script src="index.js"></script>
+</head>
+
+
+<body onload="getUsers()">
+	<header class="list-header">
+		<div class="list-header-content">
+			<h2>Users</h2>
+		</div>
+	</header>
+	<script id="entry-template" type="text/x-handlebars-template">
+		<div class="container">
+			<ul class="list">
+				{{#each users}}
+					<li class="list-item">
+						{{#with this as | user |}}
+							<img class="list-item-avatar animate" alt=""
+								src="{{user.avatar}}"
+								onerror="this.onerror=null;this.src='https://dummyimage.com/80x80/f0f0f0/000000.png&text=+'">
+							<div class="list-item-detail">
+								<p class="list-item-text list-item-detail-name">{{user.name}}</p>
+								<p class="list-item-text list-item-detail-id">ID: <span>{{user.id}}</span></p>
+								<p class="list-item-text list-item-detail-date">Date: <span>{{formatDate user.createdAt}}</span></p>
+							</div>
+						{{/with}}
+					</li>
+				{{else}}
+					<h1 class="empty">No Content</h1>
+				{{/each}}
+			</ul>
+		</div>
+	</script>
+
+	<div id="output"></div>
+</body>
+
+</html>
